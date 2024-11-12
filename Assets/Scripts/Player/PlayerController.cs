@@ -32,13 +32,19 @@ public class PlayerController : MonoBehaviour
     }
     private void Move()
     {
-        Vector3 dir = transform.forward * curMovementInput.y + transform.right * curMovementInput.x;
+        Vector3 dir = Vector3.zero;
+
+        if (curMovementInput.x != 0)
+        {
+            dir = transform.right * curMovementInput.x;
+        }
+        else if (curMovementInput.y != 0)
+        {
+            dir = transform.forward * curMovementInput.y;
+        }
         dir *= moveSpeed;
         dir.y = rigidbody.velocity.y;
 
         rigidbody.velocity = dir;
     }
-
-
-
 }
